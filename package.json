@@ -2,8 +2,9 @@
   "name": "fastmapper",
   "version": "0.0.1",
   "description": "A simple, no config mapping library for JS",
-  "main": "dist/fastmapper.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "npx webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/valantonini/fastmapper/issues"
   },
-  "homepage": "https://github.com/valantonini/fastmapper#readme"
+  "homepage": "https://github.com/valantonini/fastmapper#readme",
+  "devDependencies": {
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  }
 }
