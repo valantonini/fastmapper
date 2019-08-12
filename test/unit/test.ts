@@ -3,6 +3,6 @@ import Add from "../../src/index";
 
 describe("Add()", () => {
   it("should add correctly", () => {
-    expect(Add(2, 3)).to.equal(6);
+    expect(Add(2, 3)).to.equal(5);
   });
 });
