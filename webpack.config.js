@@ -4,13 +4,15 @@ module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.ts$/,
         enforce: 'pre',
         use: [{
           loader: 'tslint-loader',
           options: {
-            /* Loader options go here */ }
+            /* Loader options go here */
+          }
         }]
       },
       {
@@ -21,7 +23,11 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      test: path.resolve(__dirname, 'test')
+    }
   },
   output: {
     filename: 'index.js',

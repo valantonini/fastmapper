@@ -1,5 +1,5 @@
+import Add from "@/index";
 import { expect } from "chai";
-import Add from "../../src/index";
 
 describe("Add()", () => {
   it("should add correctly", () => {
