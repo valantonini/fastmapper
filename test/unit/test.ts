@@ -3,17 +3,22 @@ import { expect } from "chai";
 import { Destination, Source } from "./Objects";
 
 describe("Mapping primitive", () => {
-  const result: any = {};
+  let source!: Source;
+  let destination!: Destination;
 
   beforeEach(() => {
-    const source = new Source();
-    const destination = new Destination();
+    source = new Source();
+    destination = new Destination();
 
     fastmapper(destination, source);
   });
 
   it("should map a string correctly", () => {
-    // expect(Add(2, 3)).to.equal(5);
+    expect(destination.aString).to.equal("source");
+  });
+
+  it("should not create a property on the destination", () => {
+    expect(destination).to.not.have.key("onlyOnSource");
   });
 
 });
