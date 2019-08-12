@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "npx webpack --mode development",
-    "test": "npx mocha-webpack ./test/unit/**/*.ts"
+    "test": "npx mocha-webpack ./test/unit/**/*.ts",
+    "lint": "npx tslint --fix --project .",
+    "publish": "npm webpack --mode production"
   },
   "repository": {
     "type": "git",

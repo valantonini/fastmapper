@@ -8,5 +8,11 @@
         "cyclomatic-complexity": [true, 7],
         "quotemark": [true, "double"]
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "linterOptions": {
+      "exclude": [
+        "node_modules/**",
+        "webpack.config.js"
+      ]
+    }
 }
