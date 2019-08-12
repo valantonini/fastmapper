@@ -1,3 +1,8 @@
-export default function Add(arg1: number, arg2: number) {
-    return arg1 + arg2;
+export default function fastmapper(destination: any, source: any) {
+    Object.keys(destination)
+            .forEach( (key: string) => {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    destination[key] = source[key];
+                }
+            });
 }
