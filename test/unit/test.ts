@@ -18,7 +18,12 @@ describe("Mapping primitive", () => {
   });
 
   it("should not create a property on the destination", () => {
-    expect(destination).to.not.have.key("onlyOnSource");
+    expect(destination).to.not.have.property("onlyOnSource");
+  });
+
+  it("should not map when type does not match", () => {
+    expect(destination.overwriteNumberWithString).to.equal(2);
+    expect(typeof destination.overwriteNumberWithString).to.equal("number");
   });
 
 });
