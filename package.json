@@ -4,10 +4,10 @@
   "description": "A simple, no config mapping library for JS",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npx webpack --mode development",
-    "test": "npx mocha-webpack ./test/unit/**/*.ts",
-    "lint": "npx tslint --fix --project .",
-    "publish": "npm webpack --mode production"
+    "build": "webpack --mode development",
+    "test": "mocha-webpack ./test/unit/**/*.ts",
+    "lint": "tslint --fix --project .",
+    "publish": "webpack --mode production"
   },
   "repository": {
     "type": "git",

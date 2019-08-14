@@ -1,7 +1,7 @@
 export class Source {
     aString = "source";
     onlyOnSource = "only on source object";
-    overwriteNumberWithString = "three"
+    overwriteNumberWithString = "three";
 }
 
 export class Destination {
