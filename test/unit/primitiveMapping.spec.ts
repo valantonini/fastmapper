@@ -1,7 +1,7 @@
 import fastmapper from "@/index";
 import { expect } from "chai";
 
-describe("Mapping primitive", () => {
+describe("Primitive mapping", () => {
 
   it("should map a string correctly", () => {
     const source = {
@@ -39,11 +39,13 @@ describe("Mapping primitive", () => {
       prop: 2,
     };
 
+    const destinatioPropType = typeof destination.prop;
+
     fastmapper(destination, source);
 
     expect(destination.prop).to.equal(2);
-    expect(typeof destination.prop).to.equal("number");
-    expect(typeof source.prop).to.equal("string");
+    expect(typeof destination.prop).to.equal(destinatioPropType);
+    expect(typeof source.prop).to.not.equal(destinatioPropType);
   });
 
 });
