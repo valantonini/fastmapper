@@ -4,8 +4,7 @@ module.exports = {
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.ts$/,
         enforce: 'pre',
         use: [{
@@ -16,14 +15,23 @@ module.exports = {
         }]
       },
       {
-        
         test: /\.m?js$/,
-        use: 'ts-loader',
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            /* Loader options go here */
+          }
+        }],
         exclude: /node_modules/
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            /* Loader options go here */
+          }
+        }],
         exclude: /node_modules/
       }
     ]
