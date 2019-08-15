@@ -1,5 +1,5 @@
 
-import fastmapper from "@/index";
+import FastMapper from "@/FastMapper";
 import { expect } from "chai";
 
 describe("Object mapping", () => {
@@ -17,7 +17,7 @@ describe("Object mapping", () => {
       },
     };
 
-    fastmapper(destination, source);
+    new FastMapper().map(destination, source);
 
     expect(destination.prop.prop).to.equal("source");
   });
@@ -47,7 +47,7 @@ describe("Object mapping", () => {
       prop: new ChildDestination("destination"),
     };
 
-    fastmapper(destination, source);
+    new FastMapper().map(destination, source);
 
     expect(source.prop instanceof ChildSource).to.equal(true);
     expect(destination.prop instanceof ChildDestination).to.equal(true);
