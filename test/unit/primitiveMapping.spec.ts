@@ -12,7 +12,7 @@ describe("Primitive mapping", () => {
       prop: "dest",
     };
 
-    new FastMapper().map(destination, source);
+    new FastMapper().map(source, destination);
 
     expect(destination.prop).to.equal("source");
   });
@@ -24,7 +24,7 @@ describe("Primitive mapping", () => {
 
     const destination = {};
 
-    new FastMapper().map(destination, source);
+    new FastMapper().map(source, destination);
 
     expect(source).to.have.property("prop");
     expect(destination).to.not.have.property("prop");
@@ -41,7 +41,7 @@ describe("Primitive mapping", () => {
 
     const destinatioPropType = typeof destination.prop;
 
-    new FastMapper().map(destination, source);
+    new FastMapper().map(source, destination);
 
     expect(destination.prop).to.equal(2);
     expect(typeof destination.prop).to.equal(destinatioPropType);
