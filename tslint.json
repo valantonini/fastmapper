@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "cyclomatic-complexity": [true, 7],
+        "cyclomatic-complexity": [true, 10],
         "quotemark": [true, "double"]
     },
     "rulesDirectory": [],

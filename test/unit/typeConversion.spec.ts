@@ -7,16 +7,16 @@ describe("Type conversion", () => {
   it("should convert a type correctly", () => {
     // tslint:disable
     class ChildSource {
-      prop = "";
+      childProp = "";
       constructor(val: any){
-        this.prop = val;
+        this.childProp = val;
       }
     }
 
     class ChildDestination {
-      prop = "";
+      childProp = "";
       constructor(val?: any){
-        this.prop = val;
+        this.childProp = val;
       }
     }
     // tslint:enable
@@ -30,8 +30,11 @@ describe("Type conversion", () => {
     };
 
     new FastMapper()
-      .withConversion(ChildSource, () => new ChildDestination() )
+      .withConversion(ChildSource, ChildDestination)
       .map(source, destination);
+
+    expect((destination.prop as any) instanceof ChildDestination).to.equal(true);
+    expect( (destination.prop as any).childProp).to.equal("source");
   });
 
 });
