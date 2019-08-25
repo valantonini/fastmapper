@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A simple, no config mapping library for JS",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "build": "webpack --mode development",
     "test": "mocha-webpack ./test/unit/**/*.ts",
