@@ -4,10 +4,6 @@
 
 A no config, lightweight JS object mapper to map api responses to local viewmodels with comprehensive test coverage.
 
-To do:
-
-- support multiple type conversions
-- code cleanup
 
 ```javascript
 class ChildSource {
