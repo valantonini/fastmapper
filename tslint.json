@@ -5,8 +5,9 @@
     ],
     "jsRules": {},
     "rules": {
-        "cyclomatic-complexity": [true, 10],
-        "quotemark": [true, "double"]
+        "cyclomatic-complexity": [true, 12],
+        "quotemark": [true, "double"],
+        "max-line-length": [true, 300]
     },
     "rulesDirectory": [],
     "linterOptions": {

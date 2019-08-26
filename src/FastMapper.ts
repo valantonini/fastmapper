@@ -1,8 +1,7 @@
 import Logger from "./NullLogger";
 
 export default class FastMapper {
-    private s!: Newable<any>;
-    private d!: Newable<any>;
+    private typeConverters: Map<string, Newable<any>> = new Map();
 
     public map(source: any, destination: any) {
         const propertyNames = Object.keys(destination);
@@ -21,16 +20,17 @@ export default class FastMapper {
 
                 Logger.debug(`Source constructor name ${source[propertyName].constructor.name}`);
 
+                const mappingDestinationConstructor = this.typeConverters.get(source[propertyName].constructor.name);
+                Logger.debug(`mappingDestinationConstructor: ${mappingDestinationConstructor}`);
                 // has a conversion
-                if (this.s && source[propertyName].constructor.name === this.s.name) {
+                if (mappingDestinationConstructor) {
                     Logger.debug("Type can be converted");
-                    Logger.debug(`Instantiating a ${this.d.name}`);
-                    destination[propertyName] = new this.d();
+                    Logger.debug(`Instantiating a ${mappingDestinationConstructor.name}`);
+                    destination[propertyName] = new mappingDestinationConstructor();
                     this.map(source[propertyName], destination[propertyName]);
                     continue;
                 }
 
-                // tslint:disable-next-line: max-line-length
                 Logger.debug(`Property ${propertyName} are of different types ${typeof source[propertyName]} ${typeof destination[propertyName]}. skipping...`);
                 continue;
             }
@@ -41,8 +41,10 @@ export default class FastMapper {
 
                     Logger.debug(`Destination ${propertyName} is null. Constructing...`);
 
-                    if (source[propertyName] instanceof this.s.constructor) {
-                        destination[propertyName] = Object.create(this.d.prototype);
+                    const mappingDestinationConstructor = this.typeConverters.get(source[propertyName].constructor.name);
+
+                    if (mappingDestinationConstructor) {
+                        destination[propertyName] = Object.create(mappingDestinationConstructor.prototype);
                     }
                 }
 
@@ -57,8 +59,7 @@ export default class FastMapper {
     }
 
     public withConversion<T1, T2>(source: Newable<T1>, destination: Newable<T2>): FastMapper {
-        this.d = destination;
-        this.s = source;
+        this.typeConverters.set(source.name, destination);
         return this;
     }
 
