@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "cyclomatic-complexity": [true, 12],
+        "cyclomatic-complexity": [true, 7],
         "quotemark": [true, "double"],
         "max-line-length": [true, 300]
     },
