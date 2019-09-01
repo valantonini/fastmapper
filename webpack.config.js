@@ -46,7 +46,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    library: "promisethat",
+    library: "fastmapper",
     libraryTarget: "commonjs-module"
   }
 };
