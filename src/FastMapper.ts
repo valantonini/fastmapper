@@ -8,6 +8,16 @@ export default class FastMapper {
 
         for (const propertyName of propertyNames) {
 
+            if (Array.isArray(source[propertyName])) {
+               if (destination[propertyName] === undefined) {
+                   destination[propertyName] = [];
+               }
+               for (const value of source[propertyName]) {
+                   destination[propertyName].push(value);
+               }
+               continue;
+            }
+
             if (typeof source[propertyName] === "object") {
 
                 if (typeof destination[propertyName] !== typeof source[propertyName]) {
