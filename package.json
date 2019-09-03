@@ -8,7 +8,7 @@
     "build": "webpack --mode development",
     "test": "mocha-webpack ./test/unit/**/*.ts",
     "lint": "tslint --fix --project .",
-    "build:prod": "webpack --mode production",
+    "build:prod": "webpack --mode production && npm run build:definitions",
     "build:definitions": "tsc --build tsconfig.definition.json"
   },
   "repository": {
