@@ -8,26 +8,26 @@ export default class FastMapper {
 
         for (const propertyName of propertyNames) {
 
-            if (Array.isArray(source[propertyName])) {
-                if (destination[propertyName] === undefined) {
-                    destination[propertyName] = [];
-                }
+            if (typeof source[propertyName] === "object") {
 
-                for (const value of source[propertyName]) {
-                    if (typeof value !== "object") {
-                        destination[propertyName].push(value);
-                    } else {
-                        const convertedTarget = this.createDestinationType(value, this.typeConverters);
-                        if (convertedTarget) {
-                            this.map(value, convertedTarget);
-                            destination[propertyName].push(convertedTarget);
+                if (Array.isArray(source[propertyName])) {
+                    if (destination[propertyName] === undefined) {
+                        destination[propertyName] = [];
+                    }
+
+                    for (const value of source[propertyName]) {
+                        if (typeof value !== "object") {
+                            destination[propertyName].push(value);
+                        } else {
+                            const convertedTarget = this.createDestinationType(value, this.typeConverters);
+                            if (convertedTarget) {
+                                this.map(value, convertedTarget);
+                                destination[propertyName].push(convertedTarget);
+                            }
                         }
                     }
+                    continue;
                 }
-                continue;
-            }
-
-            if (typeof source[propertyName] === "object") {
 
                 if (typeof destination[propertyName] !== typeof source[propertyName]) {
 
