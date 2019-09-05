@@ -1,5 +1,7 @@
 const path = require('path');
 
+
+
 module.exports = {
   entry: './src/FastMapper.ts',
   devtool: 'inline-source-map',
@@ -50,3 +52,11 @@ module.exports = {
     libraryTarget: "commonjs-module"
   }
 };
+
+if (process.env.NODE_ENV === "debug") {
+  //If you would to use breakpoint in vscode, then must be set devtool to "eval" base
+  module.exports.devtool = "eval"; 
+  module.exports.output = Object.assign(module.exports.output, {
+      devtoolModuleFilenameTemplate: "[absolute-resource-path]",
+  });
+}
