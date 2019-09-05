@@ -1,10 +1,9 @@
 const path = require('path');
 
-
-
 module.exports = {
   entry: './src/FastMapper.ts',
   devtool: 'inline-source-map',
+  mode: "production",
   module: {
     rules: [{
         test: /\.ts$/,
