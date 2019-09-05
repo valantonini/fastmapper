@@ -11,21 +11,7 @@ export default class FastMapper {
             if (typeof source[propertyName] === "object") {
 
                 if (Array.isArray(source[propertyName])) {
-                    if (destination[propertyName] === undefined) {
-                        destination[propertyName] = [];
-                    }
-
-                    for (const value of source[propertyName]) {
-                        if (typeof value !== "object") {
-                            destination[propertyName].push(value);
-                        } else {
-                            const convertedTarget = this.createDestinationType(value, this.typeConverters);
-                            if (convertedTarget) {
-                                this.map(value, convertedTarget);
-                                destination[propertyName].push(convertedTarget);
-                            }
-                        }
-                    }
+                    destination[propertyName] = this.mapArray(source[propertyName], destination[propertyName]);
                     continue;
                 }
 
@@ -56,7 +42,7 @@ export default class FastMapper {
         return this;
     }
 
-    private createDestinationType<T1>(sourceTypeName: Newable<T1>, typeConverters: Map<string, Newable<any>>) {
+    private createDestinationType<T1>(sourceTypeName: Newable<T1>, typeConverters: Map<string, Newable<any>>): any | undefined {
         const mappingDestinationConstructor = typeConverters.get(sourceTypeName.constructor.name);
 
         if (mappingDestinationConstructor) {
@@ -64,5 +50,24 @@ export default class FastMapper {
         } else {
             return undefined;
         }
+    }
+
+    private mapArray(source: any[], destination: any[]): any[] {
+        if (destination === undefined) {
+            destination = [];
+        }
+
+        for (const value of source) {
+            if (typeof value !== "object") {
+                destination.push(value);
+            } else {
+                const convertedTarget = this.createDestinationType(value, this.typeConverters);
+                if (convertedTarget !== undefined) {
+                    this.map(value, convertedTarget);
+                    destination.push(convertedTarget);
+                }
+            }
+        }
+        return destination;
     }
 }
