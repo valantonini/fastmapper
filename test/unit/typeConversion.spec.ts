@@ -89,4 +89,40 @@ describe("Type conversion", () => {
     expect( (destination.prop2 as any).childProp, "childProp2 does not have correct value").to.equal("source2");
   });
 
+  it("should convert a type correctly and preserve the functions", () => {
+    // tslint:disable
+    class ChildSource {
+      childProp = "";
+      constructor(val: any){
+        this.childProp = val;
+      }
+    }
+
+    class ChildDestination {
+      childProp = "";
+      constructor(val?: any){
+        this.childProp = val;
+      }
+
+      aFunction() {
+        return "function result"
+      }
+    }
+    // tslint:enable
+
+    const source = {
+      prop: new ChildSource("source"),
+    };
+
+    const destination = {
+      prop: undefined,
+    };
+
+    new FastMapper()
+      .withConversion(ChildSource, ChildDestination)
+      .map(source, destination);
+
+    expect( (destination.prop as any).aFunction()).to.equal("function result");
+  });
+
 });
