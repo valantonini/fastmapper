@@ -14,7 +14,7 @@ describe("Collection mapping", () => {
 
     new FastMapper().map(source, destination);
 
-    expect(destination.prop).to.eql(["a", "b", "c"]);
+    expect(destination.prop).to.have.members(["a", "b", "c"]);
   });
 
   it("should map a string array to an undefined destination array", () => {
@@ -28,7 +28,7 @@ describe("Collection mapping", () => {
 
     new FastMapper().map(source, destination);
 
-    expect(destination.prop).to.eql(["a", "b", "c"]);
+    expect(destination.prop).to.have.members(["a", "b", "c"]);
   });
 
 });

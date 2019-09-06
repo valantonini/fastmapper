@@ -33,7 +33,7 @@ describe("Collection mapping", () => {
       .map(source, destination);
 
     const actual = (destination.prop!)[0] as any;
-    expect(actual instanceof ChildDestination, "element 0 of destination.prop is not an instanceof ChildDestination").to.equal(true);
+    expect(actual).to.be.an.instanceof(ChildDestination);
     expect( actual.childProp, "element 0 of destination.prop's childProp does not have correct value").to.equal("source");
   });
 
@@ -81,11 +81,11 @@ describe("Collection mapping", () => {
       .map(source, destination);
 
     const firstElement = (destination.prop!)[0] as any;
-    expect(firstElement instanceof ChildDestination1, "element 0 of destination.prop is not an instanceof ChildDestination1").to.equal(true);
+    expect(firstElement).to.be.an.instanceof(ChildDestination1);
     expect(firstElement.childProp, "element 0 of destination.prop's childProp does not have correct value").to.equal("source1");
 
     const secondElement = (destination.prop!)[1] as any;
-    expect(secondElement instanceof ChildDestination2, "element 1 of destination.prop is not an instanceof ChildDestination1").to.equal(true);
+    expect(secondElement).to.be.an.instanceof(ChildDestination2);
     expect(secondElement.childProp, "element 1 of destination.prop's childProp does not have correct value").to.equal("source2");
   });
 

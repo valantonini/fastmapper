@@ -49,8 +49,8 @@ describe("Object mapping", () => {
 
     new FastMapper().map(source, destination);
 
-    expect(source.prop instanceof ChildSource).to.equal(true);
-    expect(destination.prop instanceof ChildDestination).to.equal(true);
+    expect(source.prop).to.be.an.instanceof(ChildSource);
+    expect(destination.prop).to.be.an.instanceof(ChildDestination);
   });
 
 });
