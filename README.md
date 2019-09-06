@@ -5,38 +5,53 @@
 A no config, lightweight JS object mapper to map api responses to local viewmodels with comprehensive test coverage.
 
 
+Given we have a source type we want to decouple to a type under our control
 ```javascript
 class ChildSource {
     prop = "";
-    constructor(val: any){
-        this.prop = val;
-    }
 }
+```
 
+And we have a destination type
+```javascript
 class ChildDestination {
-    prop = "";
-    constructor(val?: any){
-        this.prop = val;
+    prop = ""; // same name an type, mapped by convention
+    
+    getIcon() {
+        // class specific function that makes sense for this but not the source or maybe we can't change the source class
     }
 }
+```
 
-const source = {
-    prop: new ChildSource("source"),
-};
-
+We can map by convention and convert types
+```javascript
+// a placeholder destination
 const destination = {
     prop: undefined,
+    collection: undefined,
 };
 
 new FastMapper()
-    .withConversion(ChildSource, ChildDestination)
+    .withConversion(ChildSource, ChildDestination) //make child sources into child destinations with it's functions
     .map(source, destination);
 ```
 
-Result:
+Saving having to do
 
 ```javascript
+const prop = new ChildDestination();
+prop.prop = "source1";
+
+const firstElement = new ChildDestination();
+firstElement.prop = "source2";
+
+const secondElement = new ChildDestination();
+secondElement.prop = "source3"
+
+const collection = [firstElement, secondElement];
+
 const destination = {
-    prop = new ChildDestination("source");
+    prop: prop,
+    collection: collection
 }
 ```
